@@ -2,6 +2,7 @@ import http from 'http';
 import express from 'express';
 
 import cityRouter from './routes/city_data.routes';
+import countryRouter from './routes/country_data.routes';
 
 const router = express();
 
@@ -11,6 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/city', cityRouter);
+router.use('/country', countryRouter);
 
 const httpServer = http.createServer(router);
 const PORT: any = process.env.PORT ?? 3000;
