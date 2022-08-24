@@ -11,12 +11,6 @@ export function getCityByName(req: Request, res: Response) {
     }));
 };
 
-export function getAllCitiesByCountry(req: Request, res: Response) {
-    return res.status(200).json(cityData.filter((elem) => {
-	return elem.country.toLowerCase() == req.params.name.toLowerCase();
-    }));
-};
-
 export function filterByLatitude(req: Request, res: Response) {
     const referenceCity = cityData.find(elem => elem.city.toLowerCase()== req.params.name.toLowerCase());
     return res.status(200).json(cityData.filter((elem) => {
