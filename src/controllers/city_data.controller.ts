@@ -5,6 +5,12 @@ export function getAllCities(req: Request, res: Response) {
     return res.status(200).json(cityData);
 };
 
+export function getCitiesHandler(req: Request, res: Response) {
+    const query = req.query;
+    if (Object.keys(query).length === 0) return getAllCities(req, res);
+    if (query.name) return res.status(200).send(query.name);
+};
+
 export function getCityByName(req: Request, res: Response) {
     return res.status(200).json(findCityElement(req.params.name));
 };

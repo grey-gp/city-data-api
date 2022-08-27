@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     res.status(200).send('hello, world');
 });
 
-router.use('/city', cityRouter);
+router.use('/cities', cityRouter);
 router.use('/country', countryRouter);
 
 const httpServer = http.createServer(router);
