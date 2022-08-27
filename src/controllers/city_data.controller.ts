@@ -8,19 +8,21 @@ export function getAllCities(req: Request, res: Response) {
 export function getCitiesHandler(req: Request, res: Response) {
     const query = req.query;
     if (Object.keys(query).length === 0) return getAllCities(req, res);
-    if (query.name) return res.status(200).send(query.name);
+    if (query.name && query.range) return filterByLatitude(query.name.toString(), query.range.toString(), res);
+
+    return res.status(400).send('missing name or range from query parameters');
 };
 
 export function getCityByName(req: Request, res: Response) {
     return res.status(200).json(findCityElement(req.params.name));
 };
 
-export function filterByLatitude(req: Request, res: Response) {
-    const referenceCity = findCityElement(req.params.name);
+function filterByLatitude(name: string, range: string, res: Response) {
+    const referenceCity = findCityElement(name);
     return res.status(200).json(cityData.filter((elem) => {
 	if (referenceCity) {
 	    if (elem.city.toLowerCase() != referenceCity.city.toLowerCase())
-		return absDifference(elem.lat, referenceCity.lat)<= Number(req.params.range);
+		return absDifference(elem.lat, referenceCity.lat)<= Number(range);
 	} else {
 	    return [];
 	}
