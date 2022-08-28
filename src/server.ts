@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/cities', cityRouter);
-router.use('/country', countryRouter);
+router.use('/countries', countryRouter);
 
 const httpServer = http.createServer(router);
 const PORT: any = process.env.PORT ?? 3000;
