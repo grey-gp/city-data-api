@@ -17,6 +17,7 @@ export function getCitiesHandler(req: Request, res: Response) {
 };
 
 export function getCityByName(req: Request, res: Response) {
+    console.log('is this working');
     return res.status(200).json(findCityElement(req.params.name));
 };
 
