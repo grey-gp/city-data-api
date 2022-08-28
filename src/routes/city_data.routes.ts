@@ -4,7 +4,7 @@ const cityRouter = express.Router();
 
 import { getCityByName, getCitiesHandler } from '../controllers/city_data.controller';
 
-cityRouter.use('/', getCitiesHandler);
-cityRouter.use('/:name', getCityByName);
+cityRouter.get('/', getCitiesHandler);
+cityRouter.get('/:name', getCityByName);
 
 export default cityRouter;
